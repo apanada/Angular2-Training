@@ -1,0 +1,19 @@
+<form [formGroup]="calcForm" novalidate>
+
+  <label for="inputFirst">First Number</label>
+  <input type="text" id="inputFirst" placeholder="First Number" name="firstNumber" formControlName="firstNumber">
+  <span *ngIf="calcForm.controls['firstNumber'].hasError('required')">FirstNumber is required</span>
+  <span *ngIf="calcForm.controls['firstNumber'].hasError('minlength')" class="text-danger">Minimum 2 characters</span>
+  <span *ngIf="calcForm.controls['firstNumber'].hasError('maxlength')" class="text-danger">Maximum 3 characters</span>
+
+  <label for="inputSecond">Second Number</label>
+  <input type="text" id="inputSecond" placeholder="Second Number" name="secondNumber" formControlName="secondNumber">
+  <span *ngIf="calcForm.controls['secondNumber'].hasError('required')">SecondNumber is required</span>
+  <span *ngIf="calcForm.controls['secondNumber'].hasError('minlength')" class="text-danger">Minimum 2 characters</span>
+  <span *ngIf="calcForm.controls['secondNumber'].hasError('maxlength')" class="text-danger">Maximum 3 characters</span>
+
+  <inner-calculator [firstNumber]="calcForm.value.firstNumber" [secondNumber]="calcForm.value.secondNumber" (calcEvent)="onCalcEvent($event)"></inner-calculator>
+
+  <br/>
+  <span>Result: {{result}}</span>
+</form>
